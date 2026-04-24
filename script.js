@@ -1,6 +1,6 @@
 const PASSWORD = "jaan";
 
-/* 📸 SLIDES */
+/* 📸 PHOTOS */
 const PHOTOS = [
 "IMG_001878.jpg",
 "WhatsApp Image 2026-04-24 at 3.48.05 PM (1).jpeg",
@@ -40,11 +40,9 @@ const slide = document.getElementById("slide");
 const caption = document.getElementById("caption");
 const typedText = document.getElementById("typedText");
 
-/* 🚀 START */
+/* 🚀 START (NO MUSIC HERE) */
 window.onload = () => {
     show("cinema");
-
-    playMusic();
 
     setTimeout(() => {
         document.getElementById("cinema").style.display = "none";
@@ -56,16 +54,21 @@ window.onload = () => {
 /* 🎵 MUSIC SYSTEM */
 function playMusic(){
     const music = document.getElementById("bgMusic");
-    const net = document.getElementById("netflixSound");
+    const netflix = document.getElementById("netflixSound");
 
-    if(music) music.play().catch(()=>{});
-    if(net) net.play().catch(()=>{});
+    if(music){
+        music.play().catch(()=>{});
+    }
 
-    // mobile unlock fallback
-    document.body.addEventListener("click", () => {
-        if(music) music.play();
-    });
+    if(netflix){
+        netflix.play().catch(()=>{});
+    }
 }
+
+/* ✔ FIX: MUSIC START ON USER CLICK */
+document.body.addEventListener("click", () => {
+    playMusic();
+}, { once: true });
 
 /* 📱 PAGE SWITCH */
 function show(id){
@@ -76,7 +79,7 @@ function show(id){
     document.getElementById(id).classList.add("active");
 }
 
-/* ✍️ INTRO TYPE */
+/* ✍️ INTRO */
 let text = ["Hey Trisha 💖","Special Surprise","Lets Start 😏"];
 let i = 0, j = 0;
 
