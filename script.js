@@ -5,6 +5,7 @@ const PHOTOS = [
 "IMG_001878.jpg",
 "WhatsApp Image 2026-04-24 at 3.48.05 PM (1).jpeg",
 "WhatsApp Image 2026-04-24 at 3.48.03 PM (1).jpeg",
+"IMG_2431.jpg",
 "WhatsApp Image 2026-04-24 at 3.48.06 PM.jpeg",
 "WhatsApp Image 2026-04-24 at 3.48.05 PM (2).jpeg"
 ];
@@ -14,6 +15,7 @@ const CAPTIONS = [
 "Every moment with you feels like magic 💖",
 "You're my favorite place ❤️",
 "With you everything feels right 🌙",
+"You Are My World",
 "Your smile = my happiness 😊",
 "Our story is forever 💕"
 ];
@@ -40,33 +42,56 @@ const slide = document.getElementById("slide");
 const caption = document.getElementById("caption");
 const typedText = document.getElementById("typedText");
 
-/* 🚀 START (NO MUSIC HERE) */
+/* 🚀 START FLOW */
 window.onload = () => {
     show("cinema");
+
+    playNetflixIntro(); // 🎬 TRY FIRST SOUND
 
     setTimeout(() => {
         document.getElementById("cinema").style.display = "none";
         show("intro");
         typeIntro();
+
+        playMusic(); // 🎵 BACKGROUND MUSIC AFTER INTRO
     }, 4500);
 };
 
-/* 🎵 MUSIC SYSTEM */
-function playMusic(){
-    const music = document.getElementById("bgMusic");
+/* 🎬 NETFLIX SOUND */
+function playNetflixIntro(){
     const netflix = document.getElementById("netflixSound");
 
-    if(music){
-        music.play().catch(()=>{});
-    }
+    if(!netflix) return;
 
-    if(netflix){
-        netflix.play().catch(()=>{});
+    netflix.currentTime = 0;
+
+    const playPromise = netflix.play();
+
+    if(playPromise !== undefined){
+        playPromise.catch(() => {
+            console.log("Netflix sound blocked until user click");
+        });
     }
 }
 
-/* ✔ FIX: MUSIC START ON USER CLICK */
+/* 🎵 BACKGROUND MUSIC */
+function playMusic(){
+    const music = document.getElementById("bgMusic");
+
+    if(!music) return;
+
+    music.volume = 0.6;
+
+    const playPromise = music.play();
+
+    if(playPromise !== undefined){
+        playPromise.catch(()=>{});
+    }
+}
+
+/* 📱 CLICK UNLOCK FOR AUDIO (IMPORTANT FIX) */
 document.body.addEventListener("click", () => {
+    playNetflixIntro();
     playMusic();
 }, { once: true });
 
@@ -79,8 +104,10 @@ function show(id){
     document.getElementById(id).classList.add("active");
 }
 
-/* ✍️ INTRO */
-let text = ["Hey Trisha 💖","Special Surprise","Lets Start 😏"];
+/* ✍️ INTRO TYPE */
+let text = ["Hey Trisha 💖",
+"Something made just for you ❤️",
+"A little world of us begins here ✨"];
 let i = 0, j = 0;
 
 function typeIntro(){

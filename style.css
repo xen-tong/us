@@ -97,7 +97,12 @@ section.active{
 }
 
 /* cats */
-.cat{width:240px;}
+.cat {
+    width: 180px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
 .cat2{width:260px;}
 
 /* slideshow */
