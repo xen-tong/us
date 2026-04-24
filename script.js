@@ -9,7 +9,7 @@ const PHOTOS = [
 "WhatsApp Image 2026-04-24 at 3.48.05 PM (2).jpeg"
 ];
 
-/* 💖 UPDATED CAPTIONS */
+/* 💖 CAPTIONS */
 const CAPTIONS = [
 "Every moment with you feels like magic 💖",
 "You're my favorite place ❤️",
@@ -18,7 +18,7 @@ const CAPTIONS = [
 "Our story is forever 💕"
 ];
 
-/* 💌 FULL MESSAGE (SAFE + SMOOTH TYPE) */
+/* 💌 MESSAGE */
 const MESSAGE =
 "You are the reason my world feels beautiful every day. " +
 "You make my ordinary life feel magical. " +
@@ -44,6 +44,8 @@ const typedText = document.getElementById("typedText");
 window.onload = () => {
     show("cinema");
 
+    playMusic();
+
     setTimeout(() => {
         document.getElementById("cinema").style.display = "none";
         show("intro");
@@ -51,30 +53,43 @@ window.onload = () => {
     }, 4500);
 };
 
+/* 🎵 MUSIC SYSTEM */
+function playMusic(){
+    const music = document.getElementById("bgMusic");
+    const net = document.getElementById("netflixSound");
+
+    if(music) music.play().catch(()=>{});
+    if(net) net.play().catch(()=>{});
+
+    // mobile unlock fallback
+    document.body.addEventListener("click", () => {
+        if(music) music.play();
+    });
+}
+
 /* 📱 PAGE SWITCH */
 function show(id){
     document.querySelectorAll("section").forEach(s=>{
         s.classList.remove("active");
     });
 
-    const el = document.getElementById(id);
-    el.classList.add("active");
+    document.getElementById(id).classList.add("active");
 }
 
 /* ✍️ INTRO TYPE */
-let introText = ["Hey Trisha 💖","Special Surprise","Lets Start 😏"];
+let text = ["Hey Trisha 💖","Special Surprise","Lets Start 😏"];
 let i = 0, j = 0;
 
 function typeIntro(){
-    if(i >= introText.length){
+    if(i >= text.length){
         setTimeout(()=>show("password"),1000);
         return;
     }
 
-    story.innerHTML += introText[i][j];
+    story.innerHTML += text[i][j];
     j++;
 
-    if(j < introText[i].length){
+    if(j < text[i].length){
         setTimeout(typeIntro,50);
     }else{
         story.innerHTML += "<br>";
