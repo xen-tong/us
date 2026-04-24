@@ -1,0 +1,170 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Arial;
+}
+
+/* 🌈 BACKGROUND ALWAYS */
+body{
+    background:linear-gradient(270deg,#ff758c,#ff7eb3,#ff9a9e);
+    background-size:600% 600%;
+    animation:gradientMove 12s ease infinite;
+}
+
+/* FULL SCREEN SYSTEM */
+section{
+    position:absolute;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+section.active{
+    display:flex;
+}
+
+/* 🎬 CINEMA */
+#cinema{
+    background:black;
+    overflow:hidden;
+}
+
+/* Netflix scene */
+.netflixScene{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+/* glow */
+.netflixFlare{
+    position:absolute;
+    width:350px;
+    height:180px;
+    background:radial-gradient(circle, rgba(229,9,20,0.7), transparent 70%);
+    filter:blur(60px);
+    animation:flare 2.5s ease forwards;
+}
+
+/* BIG N */
+.netflixN{
+    font-size:150px;
+    font-weight:900;
+    color:#e50914;
+    opacity:0;
+    transform:scale(0.2);
+    animation:nAnim 2s ease forwards;
+}
+
+/* Netflix text */
+.netflixLogo{
+    font-size:40px;
+    letter-spacing:10px;
+    color:#e50914;
+    opacity:0;
+    animation:logoAnim 2.5s ease forwards;
+    animation-delay:1s;
+}
+
+/* tagline */
+.netflixText{
+    margin-top:20px;
+    text-align:center;
+    opacity:0;
+    animation:textAnim 3s ease forwards;
+    animation-delay:1.5s;
+}
+
+.netflixText p,
+.netflixText h2{
+    color:white;
+}
+
+.netflixText h2{
+    font-size:38px;
+}
+
+/* cats */
+.cat{width:240px;}
+.cat2{width:260px;}
+
+/* slideshow */
+.imgBox{
+    width:90%;
+    max-width:340px;
+    height:380px;
+}
+
+#slide{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:20px;
+}
+
+#caption{
+    position:absolute;
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+    width:85%;
+    background:rgba(0,0,0,0.4);
+    padding:10px;
+    border-radius:12px;
+}
+
+/* hearts */
+.heart{
+    position:absolute;
+    font-size:32px;
+    cursor:pointer;
+}
+
+/* ⚪ FINAL PAGE WHITE TEXT FIX */
+#final h1,
+#final p{
+    color:white;
+}
+
+/* animations */
+@keyframes gradientMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+@keyframes nAnim{
+    0%{opacity:0;transform:scale(0.2) rotate(-20deg);}
+    50%{opacity:1;transform:scale(1.2);}
+    100%{opacity:0;transform:scale(1.5);}
+}
+
+@keyframes logoAnim{
+    0%{opacity:0;letter-spacing:20px;}
+    50%{opacity:1;}
+    100%{opacity:0;}
+}
+
+@keyframes textAnim{
+    0%{opacity:0;transform:translateY(20px);}
+    50%{opacity:1;}
+    100%{opacity:0;}
+}
+
+@keyframes flare{
+    0%{opacity:0;}
+    40%{opacity:1;}
+    100%{opacity:0;}
+}
